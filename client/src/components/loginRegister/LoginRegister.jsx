@@ -1,7 +1,7 @@
 import React from 'react';
 import "./LoginRegister.css";
-import Login from "../login/Login";
-import Register from '../register/Register';
+import Login from "../loginRegister/login/Login";
+import Register from "../loginRegister/register/Register";
 
 export const LoginRegister = () => {
   return (

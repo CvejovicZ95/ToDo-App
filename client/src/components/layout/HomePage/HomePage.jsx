@@ -41,7 +41,7 @@ export const HomePage = () => {
     const newTask = await handleCreateTask(taskName, userId);
     if (newTask) {
       setTaskName('');
-      refetchTasks(); // Ovdje se poziva refetchTasks nakon dodavanja novog zadatka
+      refetchTasks(); 
     }
   };
 
@@ -60,7 +60,7 @@ export const HomePage = () => {
       await handleEditTask(id, newTaskName);
       setEditTaskId(null);
       setNewTaskName('');
-      refetchTasks(); // Ovdje se poziva refetchTasks nakon ažuriranja zadatka
+      refetchTasks(); 
     } catch (error) {
       console.error('Error updating task:', error);
     }
@@ -123,8 +123,10 @@ export const HomePage = () => {
                     value={newTaskName}
                     onChange={(e) => setNewTaskName(e.target.value)}
                   />
-                  <button onClick={() => handleUpdate(task._id)}>Save</button>
-                  <button onClick={handleCancelEdit}>Cancel</button>
+                  <div>
+                    <button onClick={() => handleUpdate(task._id)}>Save</button>
+                    <button onClick={handleCancelEdit}>Cancel</button>
+                  </div>
                 </div>
               ) : (
                 <div>
