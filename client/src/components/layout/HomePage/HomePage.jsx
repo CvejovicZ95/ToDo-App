@@ -3,6 +3,8 @@ import "./HomePage.css";
 import { useAuthContext } from '../../../context/authContext';
 import { useLogout } from '../../../hooks/useLogout';
 import { useGetTasksByUser } from '../../../hooks/useGetTasksByUser';
+import { useCreateTaskByUser } from '../../../hooks/useCreateTaskByUser';
+import { deleteTask } from '../../../api/tasksApi';
 
 export const HomePage = () => {
   const { authUser } = useAuthContext();
@@ -11,8 +13,10 @@ export const HomePage = () => {
   const userId = authUser ? authUser._id : null;
 
   const { loading, tasks, handleDeleteTask, handleUpdateTask } = useGetTasksByUser(userId);
+  const { loading: creatingTask, handleCreateTask } = useCreateTaskByUser();
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [taskName, setTaskName] = useState('');
 
   const filteredTasks = tasks.filter(task =>
     task.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,6 +24,30 @@ export const HomePage = () => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleTaskNameChange = (e) => {
+    setTaskName(e.target.value);
+  };
+
+  const handleTaskSubmit = async (e) => {
+    e.preventDefault();
+    if (!taskName) return;
+
+    const newTask = await handleCreateTask(taskName, userId);
+    if (newTask) {
+      setTaskName('');
+      tasks.push(newTask);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteTask(id);
+      handleDeleteTask(id);
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
   };
 
   let welcomeMessage = <h2>Welcome to ToDo list...</h2>;
@@ -37,9 +65,16 @@ export const HomePage = () => {
           {welcomeMessage}
           <button onClick={logoutHandler} className='logout-btn'>Logout</button>
         </div>
-        <form>
-          <input type="text" placeholder="Enter your task..." />
-          <button type="submit">Add Task</button>
+        <form onSubmit={handleTaskSubmit}>
+          <input 
+            type="text" 
+            placeholder="Enter your task..." 
+            value={taskName}
+            onChange={handleTaskNameChange}
+          />
+          <button type="submit" disabled={creatingTask}>
+            {creatingTask ? 'Adding...' : 'Add Task'}
+          </button>
         </form>
       </div>
       <div className='todo-list'>
@@ -59,7 +94,7 @@ export const HomePage = () => {
               <span>{task.name}</span>
               <div>
                 <button onClick={() => handleUpdateTask(task._id, task.name)}>Edit</button>
-                <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
+                <button onClick={() => handleDelete(task._id)}>Delete</button>
               </div>
             </li>
           ))}

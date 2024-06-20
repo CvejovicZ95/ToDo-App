@@ -18,7 +18,8 @@ export const useGetTasksByUser = (userId) => {
       setLoading(true);
       try {
         const data = await getTasksByUser(userId);
-        setTasks(data);
+        const activeTasks = data.filter(task => !task.deleted); // Filter out deleted tasks
+        setTasks(activeTasks);
       } catch (error) {
         console.error('Error fetching tasks:', error);
         toast.error(error.message);
