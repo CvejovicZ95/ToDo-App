@@ -341,3 +341,48 @@
 {"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T10:11:05.604Z"}
 {"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T10:11:05.610Z"}
 {"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T10:11:13.403Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:20:30.687Z"}
+{"level":"info","message":"Task created successfully","timestamp":"2024-06-20T10:20:34.349Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T10:20:41.317Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:20:46.433Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:27:02.648Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:27:08.093Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:27:19.327Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:27:19.478Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:27:19.626Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T10:27:41.330Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:29:02.588Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:54:59.855Z"}
+{"level":"info","message":"Task created successfully","timestamp":"2024-06-20T10:55:06.399Z"}
+{"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T10:55:07.479Z"}
+{"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T10:55:07.487Z"}
+{"buffer":{"data":[102,116,2,114,71,42,244,146,65,82,187,170],"type":"Buffer"},"level":"info","message":"Task updated successfully:","timestamp":"2024-06-20T10:55:09.742Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T10:55:10.647Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T10:57:40.782Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T10:57:42.858Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:06:30.219Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T11:06:33.717Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:06:37.795Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:18:14.910Z"}
+{"buffer":{"data":[102,115,249,237,226,226,35,134,234,3,147,186],"type":"Buffer"},"level":"info","message":"Task updated successfully:","timestamp":"2024-06-20T11:18:18.752Z"}
+{"level":"info","message":"Task created successfully","timestamp":"2024-06-20T11:18:20.896Z"}
+{"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T11:18:21.827Z"}
+{"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T11:18:21.833Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T11:18:22.557Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:18:26.025Z"}
+{"level":"error","message":"Wrong username or password","timestamp":"2024-06-20T11:20:25.052Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:20:31.367Z"}
+{"level":"info","message":"Task created successfully","timestamp":"2024-06-20T11:20:35.135Z"}
+{"buffer":{"data":[102,116,16,131,92,82,140,237,25,117,213,187],"type":"Buffer"},"level":"info","message":"Task updated successfully:","timestamp":"2024-06-20T11:20:37.719Z"}
+{"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T11:20:38.550Z"}
+{"level":"info","message":"Task marked as deleted successfully","timestamp":"2024-06-20T11:20:38.557Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T11:20:51.872Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:20:56.722Z"}
+{"fullName":"Milance","level":"info","message":"Registration request:","password":"123456","timestamp":"2024-06-20T11:21:08.595Z","username":"Miki"}
+{"level":"info","message":"User registered successfully:","timestamp":"2024-06-20T11:21:08.660Z"}
+{"level":"info","message":"Task created successfully","timestamp":"2024-06-20T11:21:11.247Z"}
+{"level":"info","message":"Task created successfully","timestamp":"2024-06-20T11:21:13.324Z"}
+{"level":"info","message":"User logged out successfully","timestamp":"2024-06-20T11:21:15.147Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:21:18.879Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:21:32.984Z"}
+{"level":"info","message":"User logged in successfully:","timestamp":"2024-06-20T11:21:48.863Z"}

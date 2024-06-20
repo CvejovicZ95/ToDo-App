@@ -1,13 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from "./context/authContext";
-
 import { Layout } from "./components/layout/Layout";
 import { LoginRegister } from "./components/loginRegister/LoginRegister";
-
-function ProtectedRoute({ children }) {
-  const { authUser } = useAuthContext();
-  return authUser ? children : <Navigate to="/login" />;
-}
+import { UsersList } from "./components/usersList/UsersList";
 
 export function App() {
   const { authUser } = useAuthContext();
@@ -16,17 +11,28 @@ export function App() {
     <Routes>
       <Route
         path="/"
-        element={
-          <ProtectedRoute>
+        element={authUser ? (
+          authUser.role === 'admin' ? (
+            <Navigate to="/users" />
+          ) : (
             <Layout />
-          </ProtectedRoute>
-        }
+          )
+        ) : (
+          <Navigate to="/login" />
+        )}
       />
       <Route
-        path="login"
+        path="/login"
         element={authUser ? <Navigate to="/" /> : <LoginRegister />}
+      />
+      <Route
+        path="/users"
+        element={authUser && authUser.role === 'admin' ? (
+          <UsersList />
+        ) : (
+          <Navigate to="/login" />
+        )}
       />
     </Routes>
   );
 }
-

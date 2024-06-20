@@ -2,16 +2,9 @@ import { Task } from '../models/tasksSchema.js'
 import { User } from '../models/usersSchema.js'
 import { logger } from '../../logger.js'
 
-import { getAllUsers, getTasksByUser, updateTaskById, markTaskAsDeleted } from '../service/taskService.js'
+import { getTasksByUser, updateTaskById, markTaskAsDeleted } from '../service/taskService.js'
 
-export const getAllUsersController = async (req, res) => {
-    try {
-        const allUsers = await getAllUsers()
-        res.status(200).json(allUsers)
-    } catch (error) {
-        res.status(500).json({ error: 'Server error'})
-    }
-}
+
 
 export const getTasksByUserController = async (req, res) => {
     try {

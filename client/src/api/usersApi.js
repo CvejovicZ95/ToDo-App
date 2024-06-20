@@ -61,3 +61,19 @@ export const registerUser = async ({
         throw new Error(error.message)
     }
 };
+
+export const getAllUsers = async () => {
+    try {
+      const res = await fetch(`${apiUrl}/api/auth/users`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };

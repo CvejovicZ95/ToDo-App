@@ -3,6 +3,10 @@ import { User } from '../models/usersSchema.js'
 import { generateTokenAndSetCookie } from '../utils/generateToken.js'
 import { logger } from '../../logger.js'
 
+import { getAllUsers } from '../service/userService.js'
+
+
+
 export const register = async (req, res) => {
     try {
         const { username, password, fullName, role } = req.body
@@ -92,5 +96,14 @@ export const logout = async (req, res) => {
     } catch (error) {
         logger.error('Error in logout controller:', error.message)
         res.status(500).json({ error: 'Server error' })
+    }
+}
+
+export const getAllUsersController = async (req, res) => {
+    try {
+        const allUsers = await getAllUsers()
+        res.status(200).json(allUsers)
+    } catch (error) {
+        res.status(500).json({ error: 'Server error'})
     }
 }
