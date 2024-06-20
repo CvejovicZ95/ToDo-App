@@ -18,6 +18,10 @@ export const HomePage = () => {
     task.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   let welcomeMessage = <h2>Welcome to ToDo list...</h2>;
 
   if (authUser) {
@@ -25,10 +29,6 @@ export const HomePage = () => {
       <h2>{`Welcome ${authUser.username} to your ToDo list!`}</h2>
     );
   }
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
 
   return (
     <div className='home-container'>
