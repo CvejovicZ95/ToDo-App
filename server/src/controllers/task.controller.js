@@ -51,14 +51,17 @@ export const uploadTask = async (req, res) => {
 
 export const updateTaskController = async (req, res) => {
     try {
-        const taskId = req.params.taskId
-        const newData = req.body
-        const updatedTask = await updateTaskById(taskId, newData)
-        res.status(200).json(updatedTask)
+        const taskId = req.params.id;
+        const { name } = req.body;
+
+        const updatedTask = await updateTaskById(taskId, { name });
+
+        res.status(200).json(updatedTask);
     } catch (error) {
-        res.status(500).json('Server error')
+        console.error('Error updating task:', error);
+        res.status(500).json('Server error');
     }
-}
+};
 
 export const markTaskAsDeletedController = async (req, res) => {
     try {
