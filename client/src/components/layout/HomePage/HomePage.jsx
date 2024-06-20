@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import "./HomePage.css";
 import { useAuthContext } from '../../../context/authContext';
 import { useLogout } from '../../../hooks/useLogout';
-import { useGetTasksByUser } from '../../../hooks/useGetTasksByUser';
+import { useGetTasksByUser } from '../../../hooks/useGetAndDeleteTasksByUser';
 import { useCreateTaskByUser } from '../../../hooks/useCreateTaskByUser';
 import { deleteTask } from '../../../api/tasksApi';
+import { useUpdateTask } from '../../../hooks/useEditTaskByUser';
 
 export const HomePage = () => {
   const { authUser } = useAuthContext();
@@ -12,11 +13,14 @@ export const HomePage = () => {
 
   const userId = authUser ? authUser._id : null;
 
-  const { loading, tasks, handleDeleteTask, handleUpdateTask } = useGetTasksByUser(userId);
+  const { loading, tasks, handleDeleteTask, refetchTasks } = useGetTasksByUser(userId);
   const { loading: creatingTask, handleCreateTask } = useCreateTaskByUser();
+  const { updating, handleUpdateTask: handleEditTask } = useUpdateTask();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [taskName, setTaskName] = useState('');
+  const [editTaskId, setEditTaskId] = useState(null); 
+  const [newTaskName, setNewTaskName] = useState('');
 
   const filteredTasks = tasks.filter(task =>
     task.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -37,7 +41,28 @@ export const HomePage = () => {
     const newTask = await handleCreateTask(taskName, userId);
     if (newTask) {
       setTaskName('');
-      tasks.push(newTask);
+      refetchTasks(); // Ovdje se poziva refetchTasks nakon dodavanja novog zadatka
+    }
+  };
+
+  const handleEditClick = (id, currentName) => {
+    setEditTaskId(id);
+    setNewTaskName(currentName);
+  };
+
+  const handleCancelEdit = () => {
+    setEditTaskId(null);
+    setNewTaskName('');
+  };
+
+  const handleUpdate = async (id) => {
+    try {
+      await handleEditTask(id, newTaskName);
+      setEditTaskId(null);
+      setNewTaskName('');
+      refetchTasks(); // Ovdje se poziva refetchTasks nakon ažuriranja zadatka
+    } catch (error) {
+      console.error('Error updating task:', error);
     }
   };
 
@@ -91,11 +116,27 @@ export const HomePage = () => {
           {!loading && filteredTasks.length === 0 && <li>No tasks found...</li>}
           {!loading && filteredTasks.map((task) => (
             <li key={task._id}>
-              <span>{task.name}</span>
-              <div>
-                <button onClick={() => handleUpdateTask(task._id, task.name)}>Edit</button>
-                <button onClick={() => handleDelete(task._id)}>Delete</button>
-              </div>
+              {editTaskId === task._id ? (
+                <div>
+                  <input 
+                    type="text" 
+                    value={newTaskName}
+                    onChange={(e) => setNewTaskName(e.target.value)}
+                  />
+                  <button onClick={() => handleUpdate(task._id)}>Save</button>
+                  <button onClick={handleCancelEdit}>Cancel</button>
+                </div>
+              ) : (
+                <div>
+                  <span>{task.name}</span>
+                  <div>
+                    <button onClick={() => handleEditClick(task._id, task.name)} disabled={updating}>
+                      Edit
+                    </button>
+                    <button onClick={() => handleDelete(task._id)}>Delete</button>
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>
@@ -103,3 +144,4 @@ export const HomePage = () => {
     </div>
   );
 };
+
