@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./HomePage.css";
-import { useAuthContext } from '../../../context/authContext';
-import { useGetTasksByUser } from '../../../hooks/useGetAndDeleteTasksByUser';
-import { useCreateTaskByUser } from '../../../hooks/useCreateTaskByUser';
-import { deleteTask } from '../../../api/tasksApi';
-import { useUpdateTask } from '../../../hooks/useEditTaskByUser';
-import { Logout } from '../../logout/Logout';
+import { useAuthContext } from "../../../context/authContext";
+import { useGetTasksByUser } from "../../../hooks/useGetAndDeleteTasksByUser";
+import { useCreateTaskByUser } from "../../../hooks/useCreateTaskByUser";
+import { deleteTask } from "../../../api/tasksApi";
+import { useUpdateTask } from "../../../hooks/useEditTaskByUser";
+import { Logout } from "../../logout/Logout";
 
 export const HomePage = () => {
   const { authUser } = useAuthContext();
 
   const userId = authUser ? authUser._id : null;
 
-  const { loading, tasks, handleDeleteTask, refetchTasks } = useGetTasksByUser(userId);
+  const { loading, tasks, handleDeleteTask, refetchTasks } =
+    useGetTasksByUser(userId);
   const { loading: creatingTask, handleCreateTask } = useCreateTaskByUser();
   const { updating, handleUpdateTask: handleEditTask } = useUpdateTask();
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [taskName, setTaskName] = useState('');
-  const [editTaskId, setEditTaskId] = useState(null); 
-  const [newTaskName, setNewTaskName] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [taskName, setTaskName] = useState("");
+  const [editTaskId, setEditTaskId] = useState(null);
+  const [newTaskName, setNewTaskName] = useState("");
 
-  const filteredTasks = tasks.filter(task =>
-    task.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredTasks = tasks.filter((task) =>
+    task.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleSearchChange = (e) => {
@@ -39,8 +40,8 @@ export const HomePage = () => {
 
     const newTask = await handleCreateTask(taskName, userId);
     if (newTask) {
-      setTaskName('');
-      refetchTasks(); 
+      setTaskName("");
+      refetchTasks();
     }
   };
 
@@ -51,17 +52,17 @@ export const HomePage = () => {
 
   const handleCancelEdit = () => {
     setEditTaskId(null);
-    setNewTaskName('');
+    setNewTaskName("");
   };
 
   const handleUpdate = async (id) => {
     try {
       await handleEditTask(id, newTaskName);
       setEditTaskId(null);
-      setNewTaskName('');
-      refetchTasks(); 
+      setNewTaskName("");
+      refetchTasks();
     } catch (error) {
-      console.error('Error updating task:', error);
+      console.error("Error updating task:", error);
     }
   };
 
@@ -70,7 +71,7 @@ export const HomePage = () => {
       await deleteTask(id);
       handleDeleteTask(id);
     } catch (error) {
-      console.error('Error deleting task:', error);
+      console.error("Error deleting task:", error);
     }
   };
 
@@ -83,29 +84,29 @@ export const HomePage = () => {
   }
 
   return (
-    <div className='home-container'>
-      <div className='todo-form'>
-        <div className='heading-logout'>
+    <div className="home-container">
+      <div className="todo-form">
+        <div className="heading-logout">
           {welcomeMessage}
-          <Logout/>
+          <Logout />
         </div>
         <form onSubmit={handleTaskSubmit}>
-          <input 
-            type="text" 
-            placeholder="Enter your task..." 
+          <input
+            type="text"
+            placeholder="Enter your task..."
             value={taskName}
             onChange={handleTaskNameChange}
           />
           <button type="submit" disabled={creatingTask}>
-            {creatingTask ? 'Adding...' : 'Add Task'}
+            {creatingTask ? "Adding..." : "Add Task"}
           </button>
         </form>
       </div>
-      <div className='todo-list'>
+      <div className="todo-list">
         <h2>Tasks</h2>
-        <input 
-          type="text" 
-          placeholder="Search tasks by name..." 
+        <input
+          type="text"
+          placeholder="Search tasks by name..."
           className="search-input"
           value={searchTerm}
           onChange={handleSearchChange}
@@ -113,36 +114,43 @@ export const HomePage = () => {
         <ul>
           {loading && <li>Loading tasks...</li>}
           {!loading && filteredTasks.length === 0 && <li>No tasks found...</li>}
-          {!loading && filteredTasks.map((task) => (
-            <li key={task._id}>
-              {editTaskId === task._id ? (
-                <div>
-                  <input 
-                    type="text" 
-                    value={newTaskName}
-                    onChange={(e) => setNewTaskName(e.target.value)}
-                  />
+          {!loading &&
+            filteredTasks.map((task) => (
+              <li key={task._id}>
+                {editTaskId === task._id ? (
                   <div>
-                    <button onClick={() => handleUpdate(task._id)}>Save</button>
-                    <button onClick={handleCancelEdit}>Cancel</button>
+                    <input
+                      type="text"
+                      value={newTaskName}
+                      onChange={(e) => setNewTaskName(e.target.value)}
+                    />
+                    <div>
+                      <button onClick={() => handleUpdate(task._id)}>
+                        Save
+                      </button>
+                      <button onClick={handleCancelEdit}>Cancel</button>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div>
-                  <span>{task.name}</span>
+                ) : (
                   <div>
-                    <button onClick={() => handleEditClick(task._id, task.name)} disabled={updating}>
-                      Edit
-                    </button>
-                    <button onClick={() => handleDelete(task._id)}>Delete</button>
+                    <span>{task.name}</span>
+                    <div>
+                      <button
+                        onClick={() => handleEditClick(task._id, task.name)}
+                        disabled={updating}
+                      >
+                        Edit
+                      </button>
+                      <button onClick={() => handleDelete(task._id)}>
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </li>
-          ))}
+                )}
+              </li>
+            ))}
         </ul>
       </div>
     </div>
   );
 };
-

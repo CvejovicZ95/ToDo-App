@@ -4,47 +4,47 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
 
-    const { registration, registerClient} = useRegister();
+  const { registration, registerClient } = useRegister();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await registerClient({
-            username,
-            password,
-            fullName
-        });
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await registerClient({
+      username,
+      password,
+      fullName,
+    });
+  };
 
   return (
     <div>
-      <h2 className='heading'>Register</h2>
+      <h2 className="heading">Register</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="newUsername">Choose a username:</label>
-        <input 
-            type="text" 
-            id="newUsername" 
-            name="newUsername"
-            onChange={(e) => setUsername(e.target.value)} 
+        <input
+          type="text"
+          id="newUsername"
+          name="newUsername"
+          onChange={(e) => setUsername(e.target.value)}
         />
         <br />
         <label htmlFor="newPassword">Choose a password:</label>
-        <input 
-            type="password" 
-            id="newPassword" 
-            name="newPassword"
-            onChange={(e) => setPassword(e.target.value)} 
+        <input
+          type="password"
+          id="newPassword"
+          name="newPassword"
+          onChange={(e) => setPassword(e.target.value)}
         />
         <br />
         <label htmlFor="Name">Full Name:</label>
-        <input 
-            type="name" 
-            id="name" 
-            name="name"
-            onChange={(e) => setFullName(e.target.value)} 
+        <input
+          type="name"
+          id="name"
+          name="name"
+          onChange={(e) => setFullName(e.target.value)}
         />
         <br />
         <button type="submit">Register</button>
@@ -55,7 +55,7 @@ const Register = () => {
           </p>
         )}
 
-        <ToastContainer/>
+        <ToastContainer />
       </form>
     </div>
   );

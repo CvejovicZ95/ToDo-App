@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
-import { toast } from 'react-toastify';
-import { getTasksByUser, deleteTask } from '../api/tasksApi';
+import { useEffect, useState, useCallback } from "react";
+import { toast } from "react-toastify";
+import { getTasksByUser, deleteTask } from "../api/tasksApi";
 
 export const useGetTasksByUser = (userId) => {
   const [tasks, setTasks] = useState([]);
@@ -13,10 +13,10 @@ export const useGetTasksByUser = (userId) => {
     setLoading(true);
     try {
       const data = await getTasksByUser(userId);
-      const activeTasks = data.filter(task => !task.deleted);
+      const activeTasks = data.filter((task) => !task.deleted);
       setTasks(activeTasks);
     } catch (error) {
-      console.error('Error fetching tasks:', error);
+      console.error("Error fetching tasks:", error);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -30,9 +30,7 @@ export const useGetTasksByUser = (userId) => {
   const handleDeleteTask = async (id) => {
     try {
       await deleteTask(id);
-      setTasks((prevTasks) =>
-        prevTasks.filter((task) => task._id !== id)
-      );
+      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
     } catch (error) {
       toast.error(error.message);
     }
