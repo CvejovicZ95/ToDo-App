@@ -13,10 +13,10 @@ dotenv.config()
 const PORT = process.env.PORT || 5000
 
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://192.168.1.5:3000', 'http://localhost:8080'],
-    optionsSuccessStatus: 200,
-    credentials: true
-  }
+  origin: ['http://localhost:3000', 'http://192.168.1.5:3000', 'http://localhost:8080'],
+  optionsSuccessStatus: 200,
+  credentials: true
+}
 
 app.use(cors(corsOptions))
 app.use(express.json())
@@ -26,6 +26,6 @@ app.use('/api/auth', userRouter)
 app.use('/api', taskRouter)
 
 app.listen(PORT, () => {
-    connect()
-    console.log(`Server is listening on port ${PORT}`)
+  connect()
+  console.log(`Server is listening on port ${PORT}`)
 })
