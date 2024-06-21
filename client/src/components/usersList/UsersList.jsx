@@ -5,7 +5,7 @@ import { Logout } from '../logout/Logout';
 import "./UsersList.css"; 
 
 export const UsersList = () => {
-    const {  users } = useGetAllUsers();
+    const { users } = useGetAllUsers();
 
     const filteredUsers = users.filter(user => user.role === 'user');
 

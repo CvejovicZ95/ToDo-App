@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import useGetTasksByUser from '../../hooks/useGetAndDeleteTasksByUser';
+import { useGetTasksByUser } from '../../hooks/useGetAndDeleteTasksByUser';
 import "./UsersTaksks.css"
 
 export const UsersTasks = () => {

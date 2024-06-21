@@ -2,10 +2,7 @@ import bcrypt from 'bcrypt'
 import { User } from '../models/usersSchema.js'
 import { generateTokenAndSetCookie } from '../utils/generateToken.js'
 import { logger } from '../../logger.js'
-
 import { getAllUsers } from '../service/userService.js'
-
-
 
 export const register = async (req, res) => {
     try {

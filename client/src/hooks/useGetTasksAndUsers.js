@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import { getTasks } from "../api/tasksApi";
 import { getAllUsers } from "../api/usersApi";
 
-
 export const useGetTasks = () => {
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(false);

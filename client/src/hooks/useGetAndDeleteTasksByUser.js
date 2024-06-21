@@ -1,9 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
-import {
-  getTasksByUser,
-  deleteTask,
-} from '../api/tasksApi';
+import { getTasksByUser, deleteTask } from '../api/tasksApi';
 
 export const useGetTasksByUser = (userId) => {
   const [tasks, setTasks] = useState([]);
