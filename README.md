@@ -17,7 +17,7 @@ This project involves an application where users can register, log in, post task
   - Search Tasks
   - Edit Tasks
   - Delete Tasks
-  - **Admin:**
+- **Admin:**
   - Log in
   - Log Out
   - View list of all users
