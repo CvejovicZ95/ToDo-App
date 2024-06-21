@@ -1,0 +1,45 @@
+# ToDo App
+
+## Project Overview
+
+This project involves an app where registered users can both watch movies and upload their own movies. The platform aims to provide a diverse selection of films while empowering users to contribute their own content, fostering a dynamic and engaging streaming experience.
+
+## Features
+
+- **Authentication:**
+  - For authentication, Json Web Tokens (JWT) are used.
+  - JWT is saved in local storage and sent on request where necessary.
+- **Users:**
+  - Sign up
+  - Log in
+  - Log Out
+  - Post Tasks
+  - Search Tasks
+  - Edit Tasks
+  - Delete Tasks
+  - **Admin:**
+  - Log in
+  - Log Out
+  - View list of all users
+  - View users tasks
+
+## Technologies Used
+
+- React.js
+- JavaScript
+- Node.js
+- Express.js
+- MongoDB
+- CSS3
+
+## Environment Variables (Server Folder)
+
+- `DATABASE`: MongoDB connection string  
+- `PORT`: Port (e.g., 4000)
+
+## Start Scripts
+
+- **Server:**
+  - `nodemon server`
+- **Client:**
+  - `npm start`
