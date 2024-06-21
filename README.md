@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project involves an app where registered users can both watch movies and upload their own movies. The platform aims to provide a diverse selection of films while empowering users to contribute their own content, fostering a dynamic and engaging streaming experience.
+This project involves an application where users can register, log in, post tasks, edit them, and delete them. Additionally, administrator have the capability to log in, log out, view all users, and access their respective tasks.
 
 ## Features
 
