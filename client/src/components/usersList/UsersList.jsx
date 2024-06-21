@@ -1,22 +1,27 @@
 import React from 'react';
-import { useGetAllUsers } from '../../hooks/useGetTasksAndUsers'; 
+import { useGetAllUsers } from '../../hooks/useGetTasksAndUsers';
+import { Link } from 'react-router-dom';
+import { Logout } from '../logout/Logout';
+import "./UsersList.css"; 
 
 export const UsersList = () => {
-    const { loading, users } = useGetAllUsers();
+    const {  users } = useGetAllUsers();
 
-    if (loading) return <p>Loading users...</p>;
+    const filteredUsers = users.filter(user => user.role === 'user');
 
     return (
-        <div>
-            <h2>All Users</h2>
+        <div className="users-list">
+            <h2>Welcome Admin to all users list</h2>
             <ul>
-                {users.map(user => (
+                {filteredUsers.map(user => (
                     <li key={user._id}>
-                        <p>Username: {user.username}</p>
+                        <Link to={`/user-tasks/${user._id}`}>
+                            <p>Username: {user.username}</p>
+                        </Link>
                     </li>
                 ))}
             </ul>
+            <Logout/>
         </div>
     );
 };
-

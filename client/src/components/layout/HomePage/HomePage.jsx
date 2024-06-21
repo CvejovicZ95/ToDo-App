@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import "./HomePage.css";
 import { useAuthContext } from '../../../context/authContext';
-import { useLogout } from '../../../hooks/useLogout';
 import { useGetTasksByUser } from '../../../hooks/useGetAndDeleteTasksByUser';
 import { useCreateTaskByUser } from '../../../hooks/useCreateTaskByUser';
 import { deleteTask } from '../../../api/tasksApi';
 import { useUpdateTask } from '../../../hooks/useEditTaskByUser';
+import { Logout } from '../../logout/Logout';
 
 export const HomePage = () => {
   const { authUser } = useAuthContext();
-  const { logoutHandler } = useLogout();
 
   const userId = authUser ? authUser._id : null;
 
@@ -88,7 +87,7 @@ export const HomePage = () => {
       <div className='todo-form'>
         <div className='heading-logout'>
           {welcomeMessage}
-          <button onClick={logoutHandler} className='logout-btn'>Logout</button>
+          <Logout/>
         </div>
         <form onSubmit={handleTaskSubmit}>
           <input 

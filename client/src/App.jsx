@@ -3,6 +3,7 @@ import { useAuthContext } from "./context/authContext";
 import { Layout } from "./components/layout/Layout";
 import { LoginRegister } from "./components/loginRegister/LoginRegister";
 import { UsersList } from "./components/usersList/UsersList";
+import { UsersTasks } from './components/usersTasks/UsersTasks';
 
 export function App() {
   const { authUser } = useAuthContext();
@@ -33,6 +34,14 @@ export function App() {
           <Navigate to="/login" />
         )}
       />
+      <Route
+          path="/user-tasks/:userId"
+          element={authUser && authUser.role === 'admin' ? (
+            <UsersTasks />
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
     </Routes>
   );
 }

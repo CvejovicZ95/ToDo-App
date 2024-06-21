@@ -1,0 +1,53 @@
+
+.users-tasks-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .users-tasks-container a {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #007bff;
+  }
+  
+  .users-tasks-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .users-tasks-container h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .users-tasks-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .users-tasks-container ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .users-tasks-container ul li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .users-tasks-container p {
+    font-style: italic;
+    color: #888;
+  }
+  
